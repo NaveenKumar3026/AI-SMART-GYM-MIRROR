@@ -6,3 +6,6 @@ from . import health  # noqa: F401
 from . import auth  # noqa: F401
 from . import sessions  # noqa: F401
 from . import ws  # noqa: F401
+from . import analytics  # noqa: F401
+from . import plans  # noqa: F401
+from . import coach  # noqa: F401

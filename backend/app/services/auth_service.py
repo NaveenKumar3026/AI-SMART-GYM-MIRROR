@@ -19,6 +19,15 @@ class AuthService:
         res = await self.db.execute(select(User).where(User.email == email))
         return res.scalars().first()
 
+    async def get_by_id(self, user_id: str):
+        from uuid import UUID
+        try:
+            uuid_obj = UUID(user_id)
+        except ValueError:
+            return None
+        res = await self.db.execute(select(User).where(User.id == uuid_obj))
+        return res.scalars().first()
+
     async def create_user(self, payload):
         hashed = pwd_context.hash(payload.password)
         user = User(email=payload.email, password_hash=hashed, display_name=payload.display_name)
